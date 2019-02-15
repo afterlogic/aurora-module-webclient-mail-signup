@@ -1,12 +1,12 @@
 'use strict';
 
-
 module.exports = function (oAppData) {
 	var
 		App = require('%PathToCoreWebclientModule%/js/App.js'),
+		
 		Settings = require('modules/%ModuleName%/js/Settings.js'),
-		bAnonimUser = App.getUserRole() === Enums.UserRole.Anonymous,
-		SignupView = null
+		
+		bAnonimUser = App.getUserRole() === Enums.UserRole.Anonymous
 	;
 
 	Settings.init(oAppData);
@@ -30,14 +30,6 @@ module.exports = function (oAppData) {
 		}
 		else
 		{
-			var GetSignupView = function() {
-				if (SignupView === null)
-				{
-					SignupView = require('modules/%ModuleName%/js/views/MainView.js');
-				}
-				return SignupView;
-			};
-
 			return {
 				/**
 				 * Returns signup view screen.
@@ -48,11 +40,6 @@ module.exports = function (oAppData) {
 						return require('modules/%ModuleName%/js/views/MainView.js');
 					};
 					return oScreens;
-				},
-
-				registerExtentionComponent: function (oComponent) {
-					var SignupView = GetSignupView();
-					SignupView.registerExtentionComponent(oComponent);
 				}
 			};
 		}

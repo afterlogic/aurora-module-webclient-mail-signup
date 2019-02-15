@@ -2,18 +2,20 @@
 
 var
 	_ = require('underscore'),
-	ko = require('knockout'),
 	$ = require('jquery'),
+	ko = require('knockout'),
 
 	TextUtils = require('%PathToCoreWebclientModule%/js/utils/Text.js'),
 	UrlUtils = require('%PathToCoreWebclientModule%/js/utils/Url.js'),
 	Utils = require('%PathToCoreWebclientModule%/js/utils/Common.js'),
+	
+	Ajax = require('%PathToCoreWebclientModule%/js/Ajax.js'),
 	Api = require('%PathToCoreWebclientModule%/js/Api.js'),
 	App = require('%PathToCoreWebclientModule%/js/App.js'),
 	Browser = require('%PathToCoreWebclientModule%/js/Browser.js'),
-	Screens = require('%PathToCoreWebclientModule%/js/Screens.js'),
 	CAbstractScreenView = require('%PathToCoreWebclientModule%/js/views/CAbstractScreenView.js'),
-	Ajax = require('%PathToCoreWebclientModule%/js/Ajax.js'),
+	Screens = require('%PathToCoreWebclientModule%/js/Screens.js'),
+	
 	Settings = require('modules/%ModuleName%/js/Settings.js'),
 
 	$html = $('html')
@@ -57,7 +59,9 @@ function CMainView()
 	this.signupCommand = Utils.createCommand(this, this.signup, this.canTrySignup);
 
 	this.shake = ko.observable(false).extend({'autoResetToFalse': 800});
-	this.extentionComponents = ko.observableArray([]);
+	this.beforeButtonsControllers = ko.observableArray([]);
+	App.broadcastEvent('AnonymousUserForm::PopulateBeforeButtonsControllers', { ModuleName: '%ModuleName%', RegisterBeforeButtonsController: this.registerBeforeButtonsController.bind(this) });
+	
 	this.welcomeText = ko.observable('');
 	App.subscribeEvent('ShowWelcomeSignupText', _.bind(function (oParams) {
 		this.welcomeText(oParams.WelcomeText);
@@ -91,7 +95,6 @@ CMainView.prototype.onShow = function ()
 };
 
 /**
- * 
  * @param {string} sLogin
  * @param {string} sPassword
  * @param {string} sConfirmPassword
@@ -139,7 +142,8 @@ CMainView.prototype.signup = function ()
 				'Password': sPassword				
 			}
 		;
-		this.registerExtentionComponentsParameters(oParameters);
+		App.broadcastEvent('AnonymousUserForm::PopulateFormSubmitParameters', { Module: '%ModuleName%', Parameters: oParameters });
+		
 		if (this.validateForm(sLogin, sPassword, sConfirmPassword))
 		{
 			this.loading(true);
@@ -181,24 +185,12 @@ CMainView.prototype.onSignupResponse = function (oResponse, oRequest)
 	}
 };
 
-CMainView.prototype.registerExtentionComponent = function (oComponent)
+/**
+ * @param {Object} oComponent
+ */
+CMainView.prototype.registerBeforeButtonsController = function (oComponent)
 {
-	this.extentionComponents.push(oComponent);
-};
-
-CMainView.prototype.registerExtentionComponentsParameters = function (oParameters)
-{
-	_.each(this.extentionComponents(), function (oComponent) {
-		if (_.isFunction(oComponent.getParametersForSubmit))
-		{
-			var aParams = oComponent.getParametersForSubmit();
-
-			for (var ParamName in aParams)
-			{
-				oParameters[ParamName] = aParams[ParamName];
-			}
-		}
-	});
+	this.beforeButtonsControllers.push(oComponent);
 };
 
 module.exports = new CMainView();
