@@ -6,6 +6,6 @@
 		"afterlogic/aurora-framework": "~0.9.0"
 	},
 	"extra": {
-		"installer-name": "MailSignup"
+		"installer-name": "MailSignupWebclient"
 	}
 }
