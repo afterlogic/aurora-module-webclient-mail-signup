@@ -169,7 +169,7 @@ CMainView.prototype.onSignupResponse = function (oResponse, oRequest)
 	}
 	else
 	{
-		$.cookie('AuthToken', oResponse.Result.AuthToken, { expires: 30 });
+		App.setAuthToken(oResponse.Result.AuthToken);
 
 		if (window.location.search !== '' &&
 			UrlUtils.getRequestParam('reset-pass') === null &&
