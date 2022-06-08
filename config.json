@@ -1,58 +1,58 @@
 {
-  "Disabled": [
-    false,
-    "bool"
-  ],
-  "Disabled_Description": [
-    "",
-    "string"
-  ],
-  "ServerModuleName": [
-    "MailSignup",
-    "string"
-  ],
-  "ServerModuleName_Description": [
-    "",
-    "string"
-  ],
-  "HashModuleName": [
-    "signup",
-    "string"
-  ],
-  "HashModuleName_Description": [
-    "",
-    "string"
-  ],
-  "CustomLogoUrl": [
-    "",
-    "string"
-  ],
-  "CustomLogoUrl_Description": [
-    "",
-    "string"
-  ],
-  "InfoText": [
-    "",
-    "string"
-  ],
-  "InfoText_Description": [
-    "",
-    "string"
-  ],
-  "BottomInfoHtmlText": [
-    "",
-    "string"
-  ],
-  "BottomInfoHtmlText_Description": [
-    "",
-    "string"
-  ],
-  "DomainList": [
-    [],
-    "array"
-  ],
-  "DomainList_Description": [
-    "",
-    "string"
-  ]
+	"Disabled": [
+		false,
+		"bool"
+	],
+	"Disabled_Description": [
+		"",
+		"string"
+	],
+	"ServerModuleName": [
+		"MailSignup",
+		"string"
+	],
+	"ServerModuleName_Description": [
+		"",
+		"string"
+	],
+	"HashModuleName": [
+		"signup",
+		"string"
+	],
+	"HashModuleName_Description": [
+		"",
+		"string"
+	],
+	"CustomLogoUrl": [
+		"",
+		"string"
+	],
+	"CustomLogoUrl_Description": [
+		"",
+		"string"
+	],
+	"InfoText": [
+		"",
+		"string"
+	],
+	"InfoText_Description": [
+		"",
+		"string"
+	],
+	"BottomInfoHtmlText": [
+		"",
+		"string"
+	],
+	"BottomInfoHtmlText_Description": [
+		"",
+		"string"
+	],
+	"DomainList": [
+		[],
+		"array"
+	],
+	"DomainList_Description": [
+		"",
+		"string"
+	]
 }
