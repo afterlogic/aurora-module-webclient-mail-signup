@@ -16,38 +16,38 @@ namespace Aurora\Modules\MailSignup;
  */
 class Module extends \Aurora\System\Module\AbstractModule
 {
-	public function init()
-	{
-	}
+    public function init()
+    {
+    }
 
-	/**
-	 * Obtains list of module settings for authenticated user.
-	 * @return array
-	 */
-	public function GetSettings()
-	{
-		\Aurora\System\Api::checkUserRoleIsAtLeast(\Aurora\System\Enums\UserRole::Anonymous);
+    /**
+     * Obtains list of module settings for authenticated user.
+     * @return array
+     */
+    public function GetSettings()
+    {
+        \Aurora\System\Api::checkUserRoleIsAtLeast(\Aurora\System\Enums\UserRole::Anonymous);
 
-		return [
-			'ServerModuleName'	=> $this->getConfig('ServerModuleName', 'MailSignup'),
-			'HashModuleName'	=> $this->getConfig('HashModuleName', 'signup'),
-			'CustomLogoUrl'		=> $this->getConfig('CustomLogoUrl', ''),
-			'InfoText'			=> $this->getConfig('InfoText', ''),
-			'BottomInfoHtmlText'	=> $this->getConfig('BottomInfoHtmlText', ''),
-			'DomainList'		=> $this->getConfig('DomainList', [])
-		];
-	}
+        return [
+            'ServerModuleName'	=> $this->getConfig('ServerModuleName', 'MailSignup'),
+            'HashModuleName'	=> $this->getConfig('HashModuleName', 'signup'),
+            'CustomLogoUrl'		=> $this->getConfig('CustomLogoUrl', ''),
+            'InfoText'			=> $this->getConfig('InfoText', ''),
+            'BottomInfoHtmlText'	=> $this->getConfig('BottomInfoHtmlText', ''),
+            'DomainList'		=> $this->getConfig('DomainList', [])
+        ];
+    }
 
-	/**
-	 * All actions occur in subscriptions
-	 *
-	 * @param string $Name
-	 * @param string $Login
-	 * @param string $Password
-	 * @return boolean
-	 */
-	public function Signup($Name, $Login, $Password)
-	{
-		return false;
-	}
+    /**
+     * All actions occur in subscriptions
+     *
+     * @param string $Name
+     * @param string $Login
+     * @param string $Password
+     * @return boolean
+     */
+    public function Signup($Name, $Login, $Password)
+    {
+        return false;
+    }
 }
