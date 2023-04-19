@@ -12,6 +12,8 @@ namespace Aurora\Modules\MailSignup;
  * @license https://afterlogic.com/products/common-licensing Afterlogic Software License
  * @copyright Copyright (c) 2023, Afterlogic Corp.
  *
+ * @property Settings $oModuleSettings
+ *
  * @package Modules
  */
 class Module extends \Aurora\System\Module\AbstractModule
@@ -47,12 +49,12 @@ class Module extends \Aurora\System\Module\AbstractModule
         \Aurora\System\Api::checkUserRoleIsAtLeast(\Aurora\System\Enums\UserRole::Anonymous);
 
         return [
-            'ServerModuleName'	=> $this->getConfig('ServerModuleName', 'MailSignup'),
-            'HashModuleName'	=> $this->getConfig('HashModuleName', 'signup'),
-            'CustomLogoUrl'		=> $this->getConfig('CustomLogoUrl', ''),
-            'InfoText'			=> $this->getConfig('InfoText', ''),
-            'BottomInfoHtmlText'	=> $this->getConfig('BottomInfoHtmlText', ''),
-            'DomainList'		=> $this->getConfig('DomainList', [])
+            'ServerModuleName'	=> $this->oModuleSettings->ServerModuleName,
+            'HashModuleName'	=> $this->oModuleSettings->HashModuleName,
+            'CustomLogoUrl'		=> $this->oModuleSettings->CustomLogoUrl,
+            'InfoText'			=> $this->oModuleSettings->InfoText,
+            'BottomInfoHtmlText'	=> $this->oModuleSettings->BottomInfoHtmlText,
+            'DomainList'		=> $this->oModuleSettings->DomainList
         ];
     }
 
