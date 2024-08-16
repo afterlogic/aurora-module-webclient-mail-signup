@@ -169,8 +169,6 @@ CMainView.prototype.onSignupResponse = function (oResponse, oRequest)
 	}
 	else
 	{
-		App.setAuthToken(oResponse.Result.AuthToken);
-
 		if (window.location.search !== '' &&
 			UrlUtils.getRequestParam('reset-pass') === null &&
 			UrlUtils.getRequestParam('invite-auth') === null &&
