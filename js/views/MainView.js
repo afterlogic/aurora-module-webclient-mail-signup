@@ -142,8 +142,17 @@ CMainView.prototype.signup = function ()
 				'Password': sPassword				
 			}
 		;
-		App.broadcastEvent('AnonymousUserForm::PopulateFormSubmitParameters', { Module: '%ModuleName%', Parameters: oParameters });
-		
+		var oPopulateData = { Module: '%ModuleName%', Parameters: oParameters };
+		App.broadcastEvent('AnonymousUserForm::PopulateFormSubmitParameters', oPopulateData);
+
+		if (oPopulateData.Reject)
+		{
+			// A subscriber (e.g. a captcha plugin) couldn't provide required parameters -
+			// don't send a request that the server would reject anyway.
+			this.shake(true);
+			return;
+		}
+
 		if (this.validateForm(sLogin, sPassword, sConfirmPassword))
 		{
 			this.loading(true);
